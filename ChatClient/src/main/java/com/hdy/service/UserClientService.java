@@ -17,23 +17,22 @@ import java.util.Date;
 
 /**
  *
- * @author sky
- * @version 1.0
- *
+ * @author Hone too young
+ * @email 645680833@qq.com
+ * @CreateDate 2023/6/1 15:55
  *	客户端 用户服务类
  * 		功能: 1. 用户登录验证
  * 			  2. 用户注册
  * 			  3. 拉取在线用户
  * 			  4. 无异常退出
  * 			  5. 启动线程 加入集合
- *
  *  <在登录验证时连接服务器 登录成功启动线程>
  *  <注册时连接服务器, 完成后关闭>
  */
 
 public class UserClientService {
 
-    // 使用qqCommon包 的User对象, 进行传输
+    // 使用Common包的User对象, 进行传输
     private User user = new User();
 
     private Socket socket;
@@ -68,26 +67,20 @@ public class UserClientService {
 
             // 对接收到的message 消息对象进行验证
             if( message.getMessType().equals(MessageType.MESSAGE_LOGIN_SUCCEED) ) {
-
                 loop = true;
             } else {
                 // 弹窗提示
                 JOptionPane.showMessageDialog(null, "账号或密码错误!");
-
                 // 登陆失败
                 // 关闭 已启动的socket
                 socket.close();
             }
-
-        } catch (UnknownHostException e1) {
-            JOptionPane.showMessageDialog(null, "服务器未启动");
         } catch (IOException e1) {
             JOptionPane.showMessageDialog(null, "服务器未启动");
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
         return loop;   // 返回
     }
 
@@ -155,9 +148,7 @@ public class UserClientService {
          *  使用 ClientServerThread  线程类
          */
         ClientConnectThread thread = new ClientConnectThread(socket, onlineUserFrame);
-
         thread.start();   // 启动
-
         /*	将线程放入 管理线程的集合中
          *  通过ClientConnectServerThreadManage 线程管理类
          *  	addClientThread 方法添加线程
@@ -165,9 +156,6 @@ public class UserClientService {
         // 状态标记为 在线
         ClientConnectThreadManage.addThread(userId, "在线", thread);
     }
-
-
-
     /**	4.0修改
      *  聊天窗口  启动线程 方法
      * 	1. 开启一个新的 socket
@@ -192,8 +180,6 @@ public class UserClientService {
         // 创建Socket 连接到服务端
         try {
             socket = new Socket(InetAddress.getLocalHost(), 9999);
-
-
             // 发送user对象给服务端
             MyObjectOutputStream oos =
                     new MyObjectOutputStream(socket.getOutputStream());
@@ -215,12 +201,9 @@ public class UserClientService {
          * 将线程放入 管理线程的集合中
          *  	方便 线程管理器 存放管理
          */
-        // 状态 为 聊天对象("群聊" "对方用户名")
+        // 状态为聊天对象("群聊" "对方用户名")
         ClientConnectThreadManage.addThread(userId, getterId, thread);
     }
-
-
-
 
     /**	拉取在线用户方法
      * 	向服务器 发送请求在线用户列表
@@ -253,8 +236,6 @@ public class UserClientService {
 
     }
 
-
-
     /**	无异常退出方法
      * 	1. 该方法 向服务端发送 退出的message, 提示其关闭socket 退出线程
      *  2. 服务端返回给本线程, 提示本线程退出
@@ -271,19 +252,14 @@ public class UserClientService {
         message.setGetter(state);   // 接收者定义为状态
 
         try {
-
             // 调用线程管理类的 方法获取对应线程
             ClientConnectThread thread =
                     ClientConnectThreadManage.getThread(userId, state);
-
             // 向服务端发送 退出请求message
             MyObjectOutputStream oos =
                     new MyObjectOutputStream(thread.getSocket().getOutputStream());
             oos.writeObject(message);
-
             System.out.println(userId + "退出系统!");
-
-
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

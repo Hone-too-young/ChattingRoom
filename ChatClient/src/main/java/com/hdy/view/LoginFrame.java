@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.Serial;
+import java.net.URL;
 
 
 /**
@@ -46,7 +47,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     public LoginFrame() {
         /* 顶部logo栏 */
         // 插入顶部logo
-        ImageIcon logo = new ImageIcon("src/main/java/com/hdy/image/QQlogo.png");
+        ImageIcon logo = new ImageIcon("ChatClient/src/main/resources/image/QQlogo.png");
         logo.setImage(logo.getImage().getScaledInstance(516, 170,
                 Image.SCALE_DEFAULT));
         bq_North = new JLabel(logo);   // 存放上方logo
@@ -56,7 +57,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         jp_South = new JPanel();    // 存放下方组件
         btn_login = new JButton();         // 存放登录按钮的图片
         // 下方 登录按钮 设置图片
-        ImageIcon ico_login = new ImageIcon("src/main/java/com/hdy/image/loginBtn.png");
+        ImageIcon ico_login = new ImageIcon("ChatClient/src/main/resources/image/loginBtn.png");
         ico_login.setImage(ico_login.getImage().getScaledInstance(350, 45,
                 Image.SCALE_DEFAULT));
 
@@ -70,7 +71,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
         /* 中部左侧 头像栏 */
         // 中间右侧 头像图片
-        ImageIcon headIcon = new ImageIcon("src/main/java/com/hdy/image/headshot.png");
+        ImageIcon headIcon = new ImageIcon("ChatClient/src/main/resources/image/headshot.png");
         headIcon.setImage(headIcon.getImage().getScaledInstance(120, 144,
                 Image.SCALE_DEFAULT));
         bq_head = new JLabel(headIcon);

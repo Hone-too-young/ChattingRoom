@@ -17,10 +17,9 @@ public class ClientConnectThreadManage {
 
     // 4.0 线程管理更新
     // 将多个线程 放入 HashMap集合, key为用户id  value 为线程
-    private static HashMap<String, HashMap<String, ClientConnectThread>> map = new HashMap<>();
+    private static final HashMap<String, HashMap<String, ClientConnectThread>> map = new HashMap<>();
     // 一个用户的线程集合    状态      对应线程
-    private static HashMap<String, ClientConnectThread> stateMap = new HashMap<>();
-
+    private static final HashMap<String, ClientConnectThread> stateMap = new HashMap<>();
 
     public static HashMap<String, HashMap<String, ClientConnectThread>> getMap() {
         return map;
@@ -35,15 +34,10 @@ public class ClientConnectThreadManage {
         stateMap.put(state, thread);
         map.put(userId, stateMap);
     }
-
-
     // 根据userId 返回线程
     public static ClientConnectThread getThread(String userId, String state) {
-
         return map.get(userId).get(state);
     }
-
-
     // 从集合中删除 某个线程对象
     public static void removeThread(String userId) {
         map.remove(userId);

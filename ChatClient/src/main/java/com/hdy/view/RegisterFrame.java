@@ -45,7 +45,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
 
         /* 顶部logo栏 */
         // 插入顶部logo
-        ImageIcon logo = new ImageIcon("com/hdy/image/QQlogo4.png");
+        ImageIcon logo = new ImageIcon("ChatClient/src/main/resources/image/QQlogo4.png");
         logo.setImage(logo.getImage().getScaledInstance(350, 285,
                 Image.SCALE_DEFAULT));
         bq_North = new JLabel(logo);   // 存放上方logo
@@ -55,7 +55,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
         jp_South = new JPanel();    // 存放下方组件
         btn_regist = new JButton();         // 存放注册按钮的图片
         // 下方 注册按钮 设置图片
-        ImageIcon ico_login = new ImageIcon("image/registBtn.png");
+        ImageIcon ico_login = new ImageIcon("ChatClient/src/main/resources/image/registBtn.png");
         ico_login.setImage(ico_login.getImage().getScaledInstance(220, 40,
                 Image.SCALE_DEFAULT));
         // 设置 注册按钮

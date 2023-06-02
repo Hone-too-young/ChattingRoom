@@ -8,19 +8,18 @@ import com.hdy.view.ChatFrame;
 import java.io.IOException;
 import java.util.Date;
 
-
 /**
  *
- * @author sky
- * @version 1.0
- *
+ * @author Hone too young
+ * @email 645680833@qq.com
+ * @CreateDate 2023/6/1 17:28
  *  客户端 聊天类
  *  	实现用户 私聊 / 群聊
  */
 
 public class MessageClientService {
 
-    private ChatFrame chatFrame;   // 聊天窗口类 println方法
+    private final ChatFrame chatFrame;   // 聊天窗口类 println方法
 
     // 构造器初始化
     public MessageClientService(ChatFrame chatFrame) {
@@ -30,10 +29,9 @@ public class MessageClientService {
 
 
     /** 私聊方法
-     *
      *  该方法向服务端发送message对象, 有服务端发送给指定用户
      *
-     * @param sendId   发送者Id
+     * @param senderId   发送者Id
      * @param getterId 接收者Id
      * @param content  发送内容
      */
@@ -46,11 +44,10 @@ public class MessageClientService {
         message.setContent(content);
         message.setSendTime(new Date().toString());    // 设置发送时间, 调用util包的方法
 
-        println(senderId + "(我):\t\t   " + new Date().toString());
+        println(senderId + "(我):\t\t   " + new Date());
         println(content + "\n");
 
-
-        // 调用线程管理类 方法 输入发送者id,聊天对象(状态)  获取线程
+        // 调用线程管理类方法,输入发送者id,聊天对象(状态)  获取线程
         ClientConnectThread thread =
                 ClientConnectThreadManage.getThread(senderId, getterId);
         // 发送给客户端
@@ -58,7 +55,6 @@ public class MessageClientService {
             MyObjectOutputStream oos =
                     new MyObjectOutputStream(thread.getSocket().getOutputStream());
             oos.writeObject(message);
-
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -81,7 +77,7 @@ public class MessageClientService {
         message.setContent(content);
         message.setSendTime(new Date().toString());    // 设置发送时间
 
-        println(senderId + "(我):\t\t   " + new Date().toString());
+        println(senderId + "(我):\t\t   " + new Date());
         println(content + "\n");
 
         // 调用线程管理类 方法 输入发送者id  获取线程

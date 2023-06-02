@@ -10,6 +10,7 @@ import com.hdy.view.ServerFrame;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -36,7 +37,6 @@ public class Server {
      *  		<用户id, User>
      */
     private static ConcurrentHashMap<String, User> validUsers = new ConcurrentHashMap<>();
-
     // 使用静态代码块  初始化 validUsers
     static {
         validUsers.put("100", new User("100", "123456"));
@@ -80,7 +80,6 @@ public class Server {
                         new MyObjectOutputStream(socket.getOutputStream());
                 Message message = new Message();
 
-
                 // 5.若消息类型为 MESSAGE_REGIST_REQUEST 客户端请求注册
                 if(user.getRegistMessageType() != null && user.getRegistMessageType().equals(MessageType.MESSAGE_REGIST_REQUEST) )  {
 
@@ -101,13 +100,10 @@ public class Server {
                         oos.writeObject(message);   // 发送
                     }
                     user = null;
-                    // 注册结束都要 关闭, 不不论成功与否
+                    // 注册结束都要 关闭, 不论成功与否
                     socket.close();
-
-
                     // 客户端 启动聊天窗口
                 } else if (user.getState() != null) {
-
                     // 创建线程 维护
                     ServerConnectThread thread =
                             new ServerConnectThread(socket, user.getUserId(), serverFrame);
@@ -116,7 +112,7 @@ public class Server {
                     // 加入集合                                用户名             状态             线程
                     new ServerConnectThreadManage().addThread(user.getUserId(), user.getState(), thread);
 
-                    if(user.getState() == "群聊") {
+                    if(Objects.equals(user.getState(), "群聊")) {
                         println(user.getUserId() + " 创建群聊窗口");
                     } else {
                         println(user.getUserId() + " 创建与 " + user.getState() + " 的聊天窗口");
@@ -155,7 +151,6 @@ public class Server {
                         socket.close();
                     }
                 }
-
             }
 
 
@@ -218,7 +213,6 @@ public class Server {
         if(userVerify != null) {
             return false;
         } else {
-
             // 未被注册, 将用户加入
             validUsers.put(userId, user);
             return true;
@@ -232,5 +226,4 @@ public class Server {
             System.out.println(s + "\n");
         }
     }
-
 }

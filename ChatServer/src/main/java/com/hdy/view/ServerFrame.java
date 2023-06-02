@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.Serial;
 
 import javax.swing.*;
 
@@ -26,8 +27,9 @@ import com.hdy.server.Server;
  */
 public class ServerFrame extends JFrame{
 
+    @Serial
     private static final long serialVersionUID = 1L;
-    private JButton btn_Start;      // 启动服务器
+    private final JButton btn_Start;      // 启动服务器
     private JButton btn_Send;       // 发送信息按钮
     private JTextField txt_Send;    // 需要发送的文本信息
     private JTextArea taShow;       // 信息展示
@@ -80,16 +82,14 @@ public class ServerFrame extends JFrame{
         });
 
         // 向客户端推送消息
-        btn_Send.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        btn_Send.addActionListener(e -> {
 
-                // 初始化群发消息类
-                toAllService = new SendToAllService(ServerFrame.this);
+            // 初始化群发消息类
+            toAllService = new SendToAllService(ServerFrame.this);
 
-                // 调用新闻线 pushNews方法 群发消息
-                toAllService.pushNews(txt_Send.getText());
-                txt_Send.setText("");
-            }
+            // 调用新闻线 pushNews方法 群发消息
+            toAllService.pushNews(txt_Send.getText());
+            txt_Send.setText("");
         });
 
         // 客户端退出

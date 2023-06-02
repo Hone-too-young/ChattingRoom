@@ -75,7 +75,7 @@ public class ChatFrame extends JFrame {
 
         /* 消息发送 */
         // 发送消息 按钮图片
-        ImageIcon ico_login = new ImageIcon("image/sendBtn.png");
+        ImageIcon ico_login = new ImageIcon("ChatClient/src/main/resources/image/sendBtn.png");
         ico_login.setImage(ico_login.getImage().getScaledInstance(140, 35,
                 Image.SCALE_DEFAULT));
         // 设置 发送消息按钮
@@ -143,7 +143,6 @@ public class ChatFrame extends JFrame {
                     messageClientService.sendMessageToOne(userId, getterId, txt_Send.getText());
                     txt_Send.setText("");
                 }
-
             }
         });
 
