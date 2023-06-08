@@ -15,9 +15,9 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 
 /**
- * @author sky
- * @version 3.0
- * <p>
+ * @author Hone too young
+ * @email 645680833@qq.com
+ * @CreateDate 2023/6/4 13:47
  * 客户端 聊天界面窗口
  * 1. 聊天
  * 2. 文件传输

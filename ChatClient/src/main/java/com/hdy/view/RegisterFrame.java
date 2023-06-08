@@ -23,8 +23,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author sky
- * @version 2.0
+ * @author Honetooyoung
  *
  * 	用户 注册界面
  * 		用户注册

@@ -6,13 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.Serial;
-import java.net.URL;
-
 
 /**
- * @author sky
- * @version 3.0
- * <p>
+ * @author Hone too young
+ * @email 645680833@qq.com
+ * @CreateDate 2023/6/4 13:53
  * 客户端 登录界面
  * 1. 启动在线用户窗口OnlineUserFrame [主窗口]
  * 2. 启动 注册窗口
@@ -22,7 +20,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     @Serial
     private static final long serialVersionUID = 1L;
     // 顶部logo栏
-    private JLabel bq_North;
+    private final JLabel bq_North;
 
     // 中部栏
     private JTabbedPane choose;
@@ -149,11 +147,11 @@ public class LoginFrame extends JFrame implements ActionListener {
             String userId = txt_user.getText().trim();
             String password = new String(txt_pwd.getPassword()).trim();
 
-            if ("".equals(userId) || userId == null) {
+            if ("".equals(userId)) {
                 JOptionPane.showMessageDialog(null, "请输入帐号！！");
                 return;
             }
-            if ("".equals(password) || password == null) {
+            if ("".equals(password)) {
                 JOptionPane.showMessageDialog(null, "请输入密码！！");
                 return;
             }
@@ -168,26 +166,18 @@ public class LoginFrame extends JFrame implements ActionListener {
 
             userClientService = new UserClientService();
             if (userClientService.checkUser(userId, password)) {
-
                 // 弹窗登录成功
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "登陆成功！");
-
                 // 启动在线用户窗口
                 new OnlineUserFrame(userId, userClientService);
-
             } else {
 
             }
-
-
             // 点击 "注册" 按钮, 进入注册界面
         } else if (e.getSource() == btn_regist) {
-
             this.setVisible(false);
             new RegisterFrame();
-
-
         } else if (e.getSource() == btn_sweep) {
             // 点击清除号码
             txt_pwd.setText("");

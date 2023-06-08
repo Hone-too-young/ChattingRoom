@@ -12,7 +12,6 @@ import javax.swing.*;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Date;
 
 /**
@@ -114,10 +113,8 @@ public class UserClientService {
 
             Message message = (Message)ois.readObject();
 
-
             // 对接收到的message 消息对象进行验证
             if( message.getMessType().equals(MessageType.MESSAGE_REGIST_SUCCEED) ) {
-
                 loop = true;   // 函数返回值
             }
             // 无论成功与否, 关闭socket

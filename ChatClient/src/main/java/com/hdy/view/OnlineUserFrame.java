@@ -20,12 +20,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-
-
 /**
- * @author sky
- * @version 4.0
- *
+ * @author Hone too young
+ * @email 645680833@qq.com
+ * @CreateDate 2023/6/4 13:52
  * 	客户端 在线用户列表 界面  [主界面]
  * 		1. 拉取在线用户
  * 		2. 启动聊天窗口(私聊/群聊)
