@@ -17,9 +17,9 @@ import com.hdy.server.Server;
 
 
 /**
- * @author sky
- * @version 2.0
- *
+ * @author Hone too young
+ * @email 645680833@qq.com
+ * @CreateDate 2023/6/8 16:25
  * 	服务端界面
  *  功能: 1. 按键启动服务端
  *		  2. 显示 与客户端的信息

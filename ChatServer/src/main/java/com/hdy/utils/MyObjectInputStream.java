@@ -7,8 +7,9 @@ import java.io.StreamCorruptedException;
 
 
 /**
- * @author sky
- * @version 4.0
+ * @author Hone too young
+ * @email 645680833@qq.com
+ * @CreateDate 2023/6/8 16:25
  * 	 定义对象输入流
  */
 public class MyObjectInputStream extends ObjectInputStream{

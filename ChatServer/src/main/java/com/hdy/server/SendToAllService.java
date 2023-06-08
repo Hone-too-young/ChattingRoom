@@ -12,12 +12,11 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-
 /**
  *
- * @author sky
- * @version 2.0
- *
+ * @author Hone too young
+ * @email 645680833@qq.com
+ * @CreateDate 2023/6/8 16:24
  * 	服务端 推送(群发)消息类
  * 		群发消息给客户端 群聊窗口
  */

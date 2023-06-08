@@ -12,9 +12,9 @@ import java.util.Date;
 
 /**
  *
- * @author sky
- * @version 1.0
- *
+ * @author Hone too young
+ * @email 645680833@qq.com
+ * @CreateDate 2023/6/8 16:25
  * 	客户端 -- 文件传输类
  *
  * 	该类用于文件传输

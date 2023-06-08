@@ -16,9 +16,9 @@ import java.util.Iterator;
 
 /**
  *
- * @author sky
- * @version 1.0
- *
+ * @author Hone too young
+ * @email 645680833@qq.com
+ * @CreateDate 2023/6/8 16:25
  * 服务端线程类
  * 		1.接收拉取在线用户请求, 返回message给原用户
  * 		2.接收私聊请求, 发送信息包给指定用户

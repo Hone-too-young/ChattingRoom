@@ -15,9 +15,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
- * @author sky
- * @version 1.0
- *
+ * @author Hone too young
+ * @email 645680833@qq.com
+ * @CreateDate 2023/6/8 16:24
  * 	服务器 连接服务类
  * 		1. 启动服务端, 连接客户端socket
  * 		2. 存储用户数据 集合
