@@ -1,7 +1,7 @@
 package com.hdy.service;
 
-import com.hdy.common.Message;
-import com.hdy.common.MessageType;
+import com.hdy.entity.Message;
+import com.hdy.entity.MessageType;
 import com.hdy.utils.MyObjectOutputStream;
 import com.hdy.view.ChatFrame;
 

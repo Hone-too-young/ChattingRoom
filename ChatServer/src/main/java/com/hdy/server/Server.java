@@ -1,8 +1,8 @@
 package com.hdy.server;
 
-import com.hdy.common.Message;
-import com.hdy.common.MessageType;
-import com.hdy.common.User;
+import com.hdy.entity.Message;
+import com.hdy.entity.MessageType;
+import com.hdy.entity.User;
 import com.hdy.utils.MyObjectInputStream;
 import com.hdy.utils.MyObjectOutputStream;
 import com.hdy.view.ServerFrame;
@@ -18,13 +18,13 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Hone too young
  * @email 645680833@qq.com
  * @CreateDate 2023/6/8 16:24
- * 	服务器 连接服务类
- * 		1. 启动服务端, 连接客户端socket
- * 		2. 存储用户数据 集合
- * 		3. 验证用户登录
- * 		4. 用户注册
- * 		5. 用户启动登录窗口
- * 		6. 启动线程维护socket, 加入集合
+ *  服务器 连接服务类
+ *     1. 启动服务端, 连接客户端socket
+ *     2. 存储用户数据 集合
+ *     3. 验证用户登录
+ *     4. 用户注册
+ *     5. 用户启动登录窗口
+ *     6. 启动线程维护socket, 加入集合
  */
 public class Server {
 
@@ -33,23 +33,23 @@ public class Server {
 
     /*
      *  使用集合 HashMap集合 模拟数据库
-     *  		存放多个用户
-     *  		<用户id, User>
+     *         存放多个用户
+     *         <用户id, User>
      */
-    private static ConcurrentHashMap<String, User> validUsers = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, User> validUsers = new ConcurrentHashMap<>();
     // 使用静态代码块  初始化 validUsers
     static {
         validUsers.put("100", new User("100", "123456"));
         validUsers.put("101", new User("101", "123456"));
         validUsers.put("102", new User("102", "123456"));
-        validUsers.put("卢俊义", new User("卢俊义", "123456"));
-        validUsers.put("林冲", new User("林冲", "123456"));
-        validUsers.put("宋江", new User("宋江", "123456"));
-        validUsers.put("鲁智深", new User("鲁智深", "123456"));
-        validUsers.put("武松", new User("武松", "123456"));
+        validUsers.put("洪都阳", new User("洪都阳", "123456"));
+        validUsers.put("沈应鹏", new User("沈应鹏", "123456"));
+        validUsers.put("罗彬", new User("罗彬", "123456"));
+        validUsers.put("曾嘉骏", new User("曾嘉骏", "123456"));
+        validUsers.put("刘峻良", new User("刘峻良", "123456"));
     }
 
-    /**	构造器监听socket 接收User
+    /** 构造器监听socket 接收User
      *
      * @param serverFrame
      */
@@ -64,7 +64,7 @@ public class Server {
             server = new ServerSocket(9999);
 
             // 2. 循环监听, 可监听多个客户端socket
-            // 	当和某个客户端建立连接后, 也会继续监听, 等待下一个连接
+            //  当和某个客户端建立连接后, 也会继续监听, 等待下一个连接
             while(true) {
 
                 // 若没有客户端连接, 阻塞
@@ -131,41 +131,32 @@ public class Server {
                         ServerConnectThread thread =
                                 new ServerConnectThread(socket, user.getUserId(), serverFrame);
                         thread.start();  // 启动
-
                         // 将该线程 对象放入集合中 进行管理
                         /*
-                         * 	调用ServerConnectClientThreadManage 线程管理类类的
-                         * 	addThread方法 传入线程 和其对应的userId, 状态为"在线"
+                         *  调用ServerConnectClientThreadManage 线程管理类类的
+                         *  addThread方法 传入线程 和其对应的userId, 状态为"在线"
                          */
                         new ServerConnectThreadManage().addThread(user.getUserId(), "在线", thread);
-
-
                     } else {  // 登录失败
                         println("用户 " + user.getUserId() + " 登录验证失败" );
-
                         // 给messageType消息类型设置 登录失败
                         message.setMessType(MessageType.MESSAGE_LOGIN_FAIL);
                         oos.writeObject(message);   // 发送
-
                         // 关闭
                         socket.close();
                     }
                 }
             }
-
-
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-
-        }  catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } finally {
+        }  finally {
             // 当服务端退出时, 即while循环结束
             // 关闭 ServerSocket对象
             try {
-                server.close();
+                if (server != null) {
+                    server.close();
+                }
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -199,7 +190,7 @@ public class Server {
 
 
     /**  注册方法:
-     * 	1. 验证账号是否已存在, 存在返回fail
+     *  1. 验证账号是否已存在, 存在返回fail
      *  2. 不存在返回true 并将user对象加入 ConcurrentHashMap
      *
      * @param userId   用户名
@@ -227,3 +218,4 @@ public class Server {
         }
     }
 }
+

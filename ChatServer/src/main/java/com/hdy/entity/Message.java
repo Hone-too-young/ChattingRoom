@@ -1,4 +1,4 @@
-package com.hdy.common;
+package com.hdy.entity;
 
 import lombok.Data;
 

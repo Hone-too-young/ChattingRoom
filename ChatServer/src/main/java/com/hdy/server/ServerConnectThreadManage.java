@@ -2,6 +2,7 @@ package com.hdy.server;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Hone too young
@@ -14,15 +15,15 @@ import java.util.Iterator;
  * 		HashMap<String, HashMap<String, ServerConnectThread>>
  * 	2.用户的线程集合:
  * 			    状态(聊天对象)     线程
- * 		HashMap<String, ServerConnectThread>     该用户的一个聊天窗口 对于 一个线程
+ * 		HashMap<String, ServerConnectThread>     该用户的一个聊天窗口 对应 一个线程
  */
 
 public class ServerConnectThreadManage {
     // 管理用户线程的集合
     // 注意需要静态
     // 总用户线程集合          userId      该用户的线程集合
-    private static final HashMap<String, HashMap<String, ServerConnectThread>> map = new HashMap<>();
-    public static HashMap<String, HashMap<String, ServerConnectThread>> getMap() {
+    private static final ConcurrentHashMap<String, HashMap<String, ServerConnectThread>> map = new ConcurrentHashMap<>();
+    public static ConcurrentHashMap<String, HashMap<String, ServerConnectThread>> getMap() {
         return map;
     }
     // 存放线程 进入集合的方法

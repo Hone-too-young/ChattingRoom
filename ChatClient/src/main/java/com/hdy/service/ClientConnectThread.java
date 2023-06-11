@@ -1,7 +1,7 @@
 package com.hdy.service;
 
-import com.hdy.common.Message;
-import com.hdy.common.MessageType;
+import com.hdy.entity.Message;
+import com.hdy.entity.MessageType;
 import com.hdy.utils.MyObjectInputStream;
 import com.hdy.view.ChatFrame;
 import com.hdy.view.OnlineUserFrame;
@@ -92,7 +92,6 @@ public class ClientConnectThread extends Thread{
                         break;
                     case MessageType.MESSAGE_File_MES:
                         // 类型四. 客户端文件传输   接收文件(客户端1-->服务端-->本客户端)
-
                         println(message.getSender() + "\t发送文件:\t\t" + message.getSendTime());
                         println("   " + message.getFileName() + "\n");
 

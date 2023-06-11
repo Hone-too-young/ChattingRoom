@@ -1,4 +1,4 @@
-package com.hdy.common;
+package com.hdy.entity;
 
 public interface MessageType {
     /*

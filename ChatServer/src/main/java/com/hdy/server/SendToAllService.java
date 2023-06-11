@@ -1,7 +1,7 @@
 package com.hdy.server;
 
-import com.hdy.common.Message;
-import com.hdy.common.MessageType;
+import com.hdy.entity.Message;
+import com.hdy.entity.MessageType;
 import com.hdy.utils.MyObjectOutputStream;
 import com.hdy.view.ServerFrame;
 
@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.swing.JOptionPane;
 
@@ -49,7 +50,7 @@ public class SendToAllService {
 
         // 2.直接在此 循环所有通信线程   得到socket,推送消息
         // 调用线程管理类 的方法得到 集合
-        HashMap<String, HashMap<String, ServerConnectThread>> map
+        ConcurrentHashMap<String, HashMap<String, ServerConnectThread>> map
                 = ServerConnectThreadManage.getMap();
 
         // 遍历集合 推送消息

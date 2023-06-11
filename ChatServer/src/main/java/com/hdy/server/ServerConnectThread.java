@@ -1,7 +1,7 @@
 package com.hdy.server;
 
-import com.hdy.common.Message;
-import com.hdy.common.MessageType;
+import com.hdy.entity.Message;
+import com.hdy.entity.MessageType;
 import com.hdy.utils.MyObjectInputStream;
 import com.hdy.utils.MyObjectOutputStream;
 import com.hdy.view.ServerFrame;
@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -102,7 +103,7 @@ public class ServerConnectThread extends Thread{
                          *  需要遍历 线程管理类的集合 得到 所有线程socket
                          *  调用 其getThread()方法 取得 该用户的线程集合
                          */
-                        HashMap<String, HashMap<String, ServerConnectThread>> map =
+                        ConcurrentHashMap<String, HashMap<String, ServerConnectThread>> map =
                                 ServerConnectThreadManage.getMap();
                         // 遍历集合
                         Iterator<String> iterator = map.keySet().iterator();
@@ -163,7 +164,7 @@ public class ServerConnectThread extends Thread{
                          *  需要遍历 线程管理类的集合 得到 所有线程socket
                          *  调用 getThread()方法 取得hashmap集合
                          */
-                        HashMap<String, HashMap<String, ServerConnectThread>> map =
+                        ConcurrentHashMap<String, HashMap<String, ServerConnectThread>> map =
                                 ServerConnectThreadManage.getMap();
 
                         // 遍历集合
